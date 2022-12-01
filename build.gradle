@@ -24,7 +24,7 @@ jib {
 		image = "adoptopenjdk/openjdk16:x86_64-alpine-jdk-16.0.1_9"
 	}
 	to {
-		image = "kangsungbum/CICD_Project"
+		image = "kangsungbum/cicd_project"
 		tags = ["latest"]
 	}
 	container {
