@@ -1,9 +1,5 @@
-FROM openjdk:8-jdk-alpine
-
-# root 권한으로 실행되지 않도록 사용자 그룹 추가.
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-
-ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM adoptopenjdk/openjdk11
+CMD ["./mvnw", "clean", "package"]
+ARG JAR_FILE_PATH=target/*.jar
+COPY ${JAR_FILE_PATH} app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
