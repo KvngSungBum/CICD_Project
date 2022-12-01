@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.4.1'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
+	id 'com.google.cloud.tools.jib' version '3.1.2'
 }
 
 group = 'jpabook'
@@ -16,6 +17,19 @@ configurations {
 
 repositories {
 	mavenCentral()
+}
+
+jib {
+	from {
+		image = "adoptopenjdk/openjdk16:x86_64-alpine-jdk-16.0.1_9"
+	}
+	to {
+		image = "kangsungbum/CICD_Project"
+		tags = ["latest"]
+	}
+	container {
+		jvmFlags = ["-Xms128m", "-Xmx128m"]
+	}
 }
 
 dependencies {
